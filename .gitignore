@@ -1,5 +1,5 @@
 # Xcode
-*.xodeproj/*
+*.xcodeproj/*
 
 # Prerequisites
 *.d
