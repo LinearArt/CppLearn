@@ -1,37 +1,26 @@
 //
-//  CppLearn.hpp
-//  CppLearn
+//  EffectiveCpp.hpp
+//  EffectiveCpp
 //
 //  Created by 何皓源 on 2021/8/1.
 //
 
-#ifndef CppLearn_hpp
-#define CppLearn_hpp
+#ifndef EffectiveCpp
+#define EffectiveCpp
 
-#include <iostream>
+#include "Common.hpp"
 
 class Test {
 public:
-  Test() {
-    len_ = 0;
-    str_ = NULL;
-  }
-  explicit Test(const char* rhs) {
-    len_ = std::strlen(rhs);
-    str_ = new char[len_];
-    std::strcpy(str_, rhs);
-  }
-  ~Test() {
-    if (str_) {
-      delete[] str_;
-    }
+  explicit Test(const string& rhs) {
+    str_ = rhs;
   }
   const char& operator[] (int pos) const {
-    std::cout << "call const []!\n";
+    cout << "call const []!\n";
     return str_[pos];
   }
   char& operator[] (int pos) {
-    std::cout << "call non-const []!\n";
+    cout << "call non-const []!\n";
     return str_[pos];
   }
   static int ver() {
@@ -42,11 +31,10 @@ public:
   }
   
 private:
-  char* str_;
-  size_t len_;
+  string str_;
   static int ver_;
 };
 
 int Test::ver_ = 0;
 
-#endif /* CppLearn_hpp */
+#endif /* EffectiveCpp */
