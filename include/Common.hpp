@@ -8,14 +8,15 @@
 #ifndef Common
 #define Common
 
+#include <iostream>
 #include <string>
 #include <vector>
-#include <forward_list>
-#include <iostream>
+#include <unordered_map>
+
 
 using std::cout;
 using std::string;
 using std::vector;
-using std::forward_list;
+using std::unordered_map;
 
 #endif /* Common */

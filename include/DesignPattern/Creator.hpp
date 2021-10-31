@@ -1,30 +1,30 @@
 //
-//  CreatorPattern.hpp
+//  Creator.hpp
 //  CppLearn
 //
 //  Created by 何皓源 on 2021/10/30.
 //
 
-#ifndef CreatorPattern
-#define CreatorPattern
+#ifndef Creator
+#define Creator
 
 #include "Common.hpp"
 
 // Factory & Abstract Factory
 class Shape {
 public:
-  virtual ~Shape() {};
+  virtual ~Shape() {}
   virtual void draw() = 0;
 };
 
-class Rectangle: public Shape {
+class Rectangle : public Shape {
 public:
   void draw() {
     cout << "Rectangle::draw()\n";
   }
 };
 
-class Circle: public Shape {
+class Circle : public Shape {
 public:
   void draw() {
     cout << "Circle::draw()\n";
@@ -34,17 +34,17 @@ public:
 class Color {
 public:
   virtual ~Color() {}
-  virtual void fill() {};
+  virtual void fill() {}
 };
 
-class Red: public Color {
+class Red : public Color {
 public:
   void fill() {
     cout << "Red::fill()\n";
   }
 };
 
-class Green: public Color {
+class Green : public Color {
 public:
   void fill() {
     cout << "Green::fill()\n";
@@ -70,7 +70,7 @@ public:
   virtual Color* getColor(const string& type) = 0;
 };
 
-class AbsShapeFactory: public AbsFactory {
+class AbsShapeFactory : public AbsFactory {
 public:
   Shape* getShape(const string& type) {
     if (type == "Rectangle") {
@@ -85,7 +85,7 @@ public:
   }
 };
 
-class AbsColorFactory: public AbsFactory {
+class AbsColorFactory : public AbsFactory {
 public:
   Color* getColor(const string& type) {
     if (type == "Red") {
@@ -134,14 +134,14 @@ public:
   }
 };
 
-class Bottle: public Packing {
+class Bottle : public Packing {
 public:
   const string type() {
     return "Bottle";
   }
 };
 
-class Wrapper: public Packing {
+class Wrapper : public Packing {
 public:
   const string type() {
     return "Wrapper";
@@ -167,7 +167,7 @@ protected:
   Packing* pack_;
 };
 
-class Burger: public Food {
+class Burger : public Food {
 public:
   Burger() {
     pack_ = new Wrapper();
@@ -177,7 +177,7 @@ public:
   }
 };
 
-class Drink: public Food {
+class Drink : public Food {
 public:
   Drink() {
     pack_ = new Bottle();
@@ -187,7 +187,7 @@ public:
   }
 };
 
-class VegBurger: public Burger {
+class VegBurger : public Burger {
 public:
   const string name() {
     return "Veg Burger";
@@ -197,7 +197,7 @@ public:
   }
 };
 
-class BeefBurger: public Burger {
+class BeefBurger : public Burger {
 public:
   const string name() {
     return "Beef Burger";
@@ -207,7 +207,7 @@ public:
   }
 };
 
-class Coke: public Drink {
+class Coke : public Drink {
 public:
   const string name() {
     return "Coke";
@@ -217,7 +217,7 @@ public:
   }
 };
 
-class Pepsi: public Drink {
+class Pepsi : public Drink {
 public:
   const string name() {
     return "Pepsi";
@@ -283,4 +283,72 @@ private:
   Food* pepsi_;
 };
 
-#endif /* CreatorPattern */
+// Prototype
+class CloneShape {
+public:
+  CloneShape() {
+    type_ = "";
+  }
+  CloneShape(CloneShape& rhs) {
+    type_ = rhs.type();
+  }
+  virtual ~CloneShape() {};
+  virtual void draw() = 0;
+  virtual CloneShape* clone() = 0;
+  const string type() {
+    return type_;
+  }
+  
+protected:
+  string type_;
+};
+
+class CloneRectangle : public CloneShape {
+public:
+  CloneRectangle() {
+    type_ = "Rectangle";
+  }
+  void draw() {
+    cout << "CloneRectangle::draw()\n";
+  }
+  CloneShape* clone() {
+    return new CloneRectangle(*this);
+  }
+};
+
+class CloneCircle : public CloneShape {
+public:
+  CloneCircle() {
+    type_ = "Circle";
+  }
+  void draw() {
+    cout << "CloneCircle::draw()\n";
+  }
+  CloneShape* clone() {
+    return new CloneCircle(*this);
+  }
+};
+
+class CloneShapeCache {
+public:
+  CloneShapeCache() {
+    cache_[1] = new CloneRectangle();
+    cache_[2] = new CloneCircle();
+  }
+  ~CloneShapeCache() {
+    for (auto& s : cache_) {
+      delete s.second;
+    }
+  }
+  CloneShape* get(int idx) {
+    if (cache_.find(idx) != cache_.end()) {
+      return cache_[idx]->clone();
+    }
+    return nullptr;
+  }
+  
+private:
+  unordered_map<int, CloneShape*> cache_;
+};
+
+#endif /* Creator */

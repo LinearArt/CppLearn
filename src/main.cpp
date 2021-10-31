@@ -6,8 +6,8 @@
 //
 
 #include "EffectiveCpp.hpp"
-#include "CreatorPattern.hpp"
-#include "StructurePattern.hpp"
+#include "Creator.hpp"
+#include "Structure.hpp"
 
 void testEffectiveCpp() {
   Test t0("static_test_0");
@@ -57,8 +57,22 @@ void testBuilder() {
   mb.display();
 }
 
+void testProtoType() {
+  CloneShapeCache sc;
+  CloneShape* rect = sc.get(1);
+  CloneShape* circle = sc.get(2);
+  if (rect) {
+    rect->draw();
+    delete rect;
+  }
+  if (circle) {
+    circle->draw();
+    delete circle;
+  }
+}
+
 int main() {
-  testBuilder();
+  testProtoType();
   
   return 0;
 }
