@@ -1,12 +1,12 @@
 //
-//  EffectiveCpp.hpp
-//  EffectiveCpp
+//  Effective.hpp
+//  Effective
 //
 //  Created by 何皓源 on 2021/8/1.
 //
 
-#ifndef EffectiveCpp
-#define EffectiveCpp
+#ifndef Effective
+#define Effective
 
 #include "Common.hpp"
 
