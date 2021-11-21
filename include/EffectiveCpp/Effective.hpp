@@ -37,4 +37,4 @@ private:
 
 int Test::ver_ = 0;
 
-#endif /* EffectiveCpp */
+#endif /* Effective */

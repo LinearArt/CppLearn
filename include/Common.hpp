@@ -18,6 +18,22 @@ using std::string;
 using std::vector;
 using std::unordered_map;
 
+// test Effective
+void testEffective();
+
+// test Creator
+void testFactory();
+void testAbsFactory();
+void testSingle();
+void testBuilder();
 void testProtoType();
+
+// test Structure
+void testAdapter();
+void testBridge();
+void testFilter();
+void testComposite();
+void testDecorator();
+void testFacade();
 
 #endif /* Common */

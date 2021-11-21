@@ -7,7 +7,7 @@
 
 #include "Effective.hpp"
 
-void testEffectiveCpp() {
+void testEffective() {
   Test t0("static_test_0");
   Test t1("static_test_1");
   Test::ver(1);

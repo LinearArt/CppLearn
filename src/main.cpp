@@ -8,7 +8,20 @@
 #include "Common.hpp"
 
 int main() {
-  testProtoType();
+//  testEffective();
+//
+//  testFactory();
+//  testAbsFactory();
+//  testSingle();
+//  testBuilder();
+//  testProtoType();
+//
+//  testAdapter();
+//  testBridge();
+//  testFilter();
+//  testComposite();
+//  testDecorator();
+  testFacade();
   
   return 0;
 }
