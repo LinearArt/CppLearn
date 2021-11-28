@@ -21,7 +21,11 @@ int main() {
 //  testFilter();
 //  testComposite();
 //  testDecorator();
-  testFacade();
+//  testFacade();
+//  testFlyweight();
+//  testProxy();
+  
+  testCOR();
   
   return 0;
 }

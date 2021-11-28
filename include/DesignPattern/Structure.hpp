@@ -203,7 +203,7 @@ private:
 // Composite
 class Employee {
 public:
-  explicit Employee(const string title) {
+  explicit Employee(const string& title) {
     title_ = title;
   }
   void add(Employee p) {
@@ -289,5 +289,79 @@ private:
 };
 
 // Flyweight
+class FlyCircle : public Shape {
+public:
+  explicit FlyCircle(const string& color) {
+    color_ = color;
+    cout << color << " FlyCircle has been constructed\n";
+  }
+  void draw() {
+    cout << "FlyCircle::draw() in " << color_ << '\n';
+  }
+  
+private:
+  string color_;
+};
+
+class FlyCircleFactory {
+public:
+  ~FlyCircleFactory() {
+    for (auto& k : cache_) {
+      delete k.second;
+    }
+  }
+  FlyCircle* get(const string& color) {
+    if (cache_.find(color) == cache_.end()) {
+      cache_[color] = new FlyCircle(color);
+    }
+    return cache_[color];
+  }
+  
+private:
+  unordered_map<string, FlyCircle*> cache_;
+};
+
+// Proxy
+class Image {
+public:
+  virtual void display() = 0;
+};
+
+class DiskImage : public Image {
+public:
+  explicit DiskImage(const string& path) {
+    path_ = path;
+    cout << "Load Image " << path_ << '\n';
+  }
+  void display() {
+    cout << "Display Image " << path_ << '\n';
+  }
+  
+private:
+  string path_;
+};
+
+class ImageProxy : public Image {
+public:
+  explicit ImageProxy(const string& path) {
+    path_ = path;
+    img_ = nullptr;
+  }
+  ~ImageProxy() {
+    if (img_) {
+      delete img_;
+    }
+  }
+  void display() {
+    if (img_ == nullptr) {
+      img_ = new DiskImage(path_);
+    }
+    img_->display();
+  }
+  
+private:
+  string path_;
+  DiskImage* img_;
+};
 
 #endif /* Structure */

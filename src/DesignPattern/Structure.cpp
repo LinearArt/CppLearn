@@ -70,3 +70,21 @@ void testFacade() {
   sm.drawCircle();
   sm.drawRect();
 }
+
+void testFlyweight() {
+  FlyCircleFactory fcf;
+  FlyCircle* r0 = fcf.get("Red");
+  FlyCircle* r1 = fcf.get("Red");
+  FlyCircle* g0 = fcf.get("Green");
+  FlyCircle* g1 = fcf.get("Green");
+  r0->draw();
+  r1->draw();
+  g0->draw();
+  g1->draw();
+}
+
+void testProxy() {
+  ImageProxy ip("/home/a.jpg");
+  ip.display();
+  ip.display();
+}

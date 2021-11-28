@@ -35,5 +35,11 @@ void testFilter();
 void testComposite();
 void testDecorator();
 void testFacade();
+void testFlyweight();
+void testProxy();
+
+// test Behavior
+void testCOR();
+void testCommand();
 
 #endif /* Common */
