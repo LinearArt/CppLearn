@@ -41,5 +41,8 @@ void testProxy();
 // test Behavior
 void testCOR();
 void testCommand();
+void testInterpreter();
+void testIterator();
+void testMediator();
 
 #endif /* Common */

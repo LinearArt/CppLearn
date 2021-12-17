@@ -9,13 +9,13 @@
 
 int main() {
 //  testEffective();
-//
+
 //  testFactory();
 //  testAbsFactory();
 //  testSingle();
 //  testBuilder();
 //  testProtoType();
-//
+
 //  testAdapter();
 //  testBridge();
 //  testFilter();
@@ -25,7 +25,11 @@ int main() {
 //  testFlyweight();
 //  testProxy();
   
-  testCOR();
+//  testCOR();
+//  testCommand();
+//  testInterpreter();
+//  testIterator();
+  testMediator();
   
   return 0;
 }
